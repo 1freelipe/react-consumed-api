@@ -11,7 +11,7 @@ export default createGlobalStyle`
   }
 
   body {
-    color: ${colors.primaryColor};
+    /* color: ${colors.primaryColor}; */
     font-family: sans-serif;
     background: ${colors.primaryDarkColor};
   }
