@@ -23,11 +23,16 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
     background: ${colors.primaryColor};
-    border: none;
+    border: 1px solid ${colors.primaryDarkColor};
     color: #fff;
     padding: 10px 20px;
     border-radius: 4px;
     font-weight: 700;
+    transition: all 300ms;
+  }
+
+  button:hover {
+    filter: brightness(85%);
   }
 
   a {
@@ -63,7 +68,7 @@ export const Container = styled.section`
   padding: 30px;
   background: #fff;
   margin: 30px auto;
-  text-align: center;
+  /* text-align: center; */
   border-radius: 4px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 `;

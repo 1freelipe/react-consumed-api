@@ -22,6 +22,7 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.3.0",
     "styled-components": "^6.1.19",
+    "validator": "^13.15.35",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
