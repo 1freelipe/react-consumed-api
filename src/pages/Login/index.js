@@ -1,11 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import { toast } from 'react-toastify';
+import { isEmail } from 'validator';
 import { Container } from '../../styles/globalStyles';
+import { Form } from './styled';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let formErrors = false;
+
+    if (email.length === 0) {
+      formErrors = true;
+      toast.warning('O e-mail precisa ser preenchido.');
+    }
+
+    if (email.length !== 0 && !isEmail(email)) {
+      formErrors = true;
+      toast.warning('O e-mail precisa ser válido.');
+    }
+
+    if (password.length === 0) {
+      formErrors = true;
+      toast.warning('A senha precisa ser preenchida.');
+    }
+
+    if (formErrors) return;
+
+    console.log('Tudo certo!');
+  };
+
   return (
     <Container>
       <h1>Login</h1>
+
+      <Form onSubmit={handleSubmit}>
+        <label htmlFor="email">
+          E-mail:
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+
+        <label htmlFor="password">
+          Password:
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+
+        <button type="submit">Acessar</button>
+      </Form>
     </Container>
   );
 }
