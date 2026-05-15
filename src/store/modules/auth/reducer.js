@@ -30,6 +30,10 @@ export default function reducer(state = initialState, action) {
       return newState;
     }
 
+    case types.REGISTER_REQUEST: {
+      return null;
+    }
+
     default:
       return state;
   }
