@@ -19,8 +19,10 @@ function* loginRequest({ payload }) {
     // Redirecionando o usuário para a rota configurada no prevPath caso ele não acesse a rota autenticada
     history.push(payload.prevPath);
   } catch (e) {
-    toast.error('Usuário ou senha inváidos.');
-    yield put(actions.loginFailure);
+    const error = get(e, 'response.data.errors', []);
+    console.log(error);
+    error.map((err) => toast.error(err));
+    yield put(actions.loginFailure());
   }
 }
 

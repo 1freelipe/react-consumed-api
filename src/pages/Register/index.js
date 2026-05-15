@@ -6,12 +6,14 @@ import { Form } from './styled';
 import axios from '../../services/axios';
 import history from '../../services/history';
 
+import Loading from '../../components/Loading';
 import { Container } from '../../styles/globalStyles';
 
 export default function Register() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ export default function Register() {
     if (formErrors) return;
 
     async function submitData() {
+      setLoading(true);
       try {
         await axios.post('/users/', {
           nome,
@@ -55,6 +58,8 @@ export default function Register() {
         console.log('status:', status);
 
         errors.map((err) => toast.error(err));
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -63,6 +68,8 @@ export default function Register() {
 
   return (
     <Container>
+      <Loading isLoading={loading} />
+
       <h1>Crie sua conta</h1>
 
       <Form onSubmit={handleSubmit}>
@@ -97,7 +104,9 @@ export default function Register() {
           />
         </label>
 
-        <button type="submit">Criar minha conta</button>
+        <button type="submit" disabled={loading}>
+          Criar minha conta
+        </button>
       </Form>
     </Container>
   );

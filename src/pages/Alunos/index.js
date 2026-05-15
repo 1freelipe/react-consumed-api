@@ -6,10 +6,12 @@ import { get } from 'lodash';
 import { Container } from '../../styles/globalStyles';
 import { AlunoContianer, ProfilePicture } from './styled';
 import axios from '../../services/axios';
+import Loading from '../../components/Loading';
 
 export default function Alunos() {
   // eslint-disable-next-line
   const [alunos, setAlunos] = useState([]);
+  // eslint-disable-next-line
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,14 +30,10 @@ export default function Alunos() {
     getData();
   }, []);
 
-  if (loading) {
-    return <h1>Carregando</h1>;
-  }
-
   return (
     <Container>
+      <Loading isLoading={loading} />
       <h1>Alunos</h1>
-
       <AlunoContianer>
         {alunos ? (
           alunos.map((a) => (

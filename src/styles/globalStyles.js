@@ -29,6 +29,10 @@ export default createGlobalStyle`
     border-radius: 4px;
     font-weight: 700;
     transition: all 300ms;
+
+    &:disabled {
+      background: #d9d9d9;
+    }
   }
 
   button:hover {
