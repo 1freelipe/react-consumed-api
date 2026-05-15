@@ -10,6 +10,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.LOGIN_REQUEST: {
+      console.log('REDUCER', action.payload);
       return state;
     }
 
